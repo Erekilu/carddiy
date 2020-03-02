@@ -30,6 +30,32 @@
             <div class="layui-card">
                 <div class="layui-card-body">
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                        <legend>更新记录</legend>
+                    </fieldset>
+                    <ul class="layui-timeline">
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis"></i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">2020/3/2</h3>
+                                <p>
+                                    修复了吧友提出的字体问题，还有我自己发现一些问题。
+                                </p>
+                                <ul>
+                                    <li>PC端制作完图片后点击图片就能下载了。</li>
+                                    <li>修复了英文或符号宽度只有中文一半带来的不对称排列(卡牌描述区块)。</li>
+                                    <li>优化了卡牌名称字体，由默认字体改成“经典隶书”。</li>
+                                    <li>修复了成品展示区要点击两下才能出现轮播图的bug，现在点击一下就可以轮播了！</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                    <blockquote class="layui-elem-quote layui-quote-nm">
+                        代码开源，已经上传在github上了，喜欢的话，给基露点个Star(●'◡'●)。<br/>
+                        地址：https://github.com/Erekilu/carddiy <br/>
+                        疫情之下，大家一定要保护好自己嗷！少外出，多diy。
+                    </blockquote>
+
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                         <legend>常见问题</legend>
                     </fieldset>
                     <blockquote class="layui-elem-quote">这里主要列举在测试过程中普遍遇到的“问题”，这些问题并非是BUG，
@@ -47,11 +73,16 @@
                         <div class="layui-colla-item">
                             <h2 class="layui-colla-title">为什么我制作的卡牌字体和预览图不同呢？</h2>
                             <div class="layui-colla-content">
-                                因为卡名是用的隶书字体，卡牌描述是用的微软雅黑。<br/>
-                                如果你用的系统没有这个字体，就会替换成你系统的默认字体。<br/>
-                                手机可能没有安装这些字体，而且不同手机的字体不同，基露也无法统一字体，
-                                所以建议在windows系统下使用该制作器。<br/>
-
+                                现在引入了经典隶书字体文件，大约要加载一段时间。<br/>
+                                在加载完之前，使用的是你系统的默认字体。<br/>
+                                不妨等一会再点击制作哟，等字体文件加载完就可以正常显示了。
+                            </div>
+                        </div>
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">制作出的图片能不能下载？</h2>
+                            <div class="layui-colla-content">
+                                目前只在PC端设置了下载接口，在制作完图片后，点击图片即可下载到本地。<br/>
+                                移动端暂不支持，以后会慢慢优化的！
                             </div>
                         </div>
                         <div class="layui-colla-item">
@@ -151,13 +182,6 @@
                             </div>
                         </li>
                     </ul>
-
-                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-                        <legend>更新记录</legend>
-                    </fieldset>
-                    <blockquote class="layui-elem-quote layui-quote-nm">
-                        目前无更新，疫情之下，大家一定要保护好自己嗷！
-                    </blockquote>
                 </div>
             </div>
         </div>
@@ -178,7 +202,7 @@
                             <h2>关于作者</h2>
                         </div>
                         <div class=" layui-col-xs12">
-                            <p>学生一枚~，软件工程专业。游戏ID是“厄兰基露 4110409”，擅长深蓝，痛恨快攻。平时喜欢唱歌、健身，当然，
+                            <p>学生一枚~，软件工程专业。游戏ID是“厄兰基露 4110409”，擅长深蓝，讨厌快攻，欢迎大家加好友。平时喜欢唱歌、健身，当然，
                                 对编程也是很感兴趣的。也不说多了，大佬们天梯遇到我记得py呀，爱你们。</p>
                         </div>
                     </div>
@@ -222,8 +246,7 @@
     layui.use(['layer', 'element'], function() {
         let {element, layer, jquery: $} = layui;
         // 点击图片弹出轮播图
-        $('#demo').click(function() {
-            console.log('hello');
+        $('#demo div').click(function() {
             layer.photos({
                 photos: '#demo',
                 anim: 5

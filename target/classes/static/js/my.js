@@ -1,6 +1,6 @@
 // 上传后的操作
 layui.use(['upload', 'layer', 'element', 'form'], function() {
-    let {upload, layer, element, form, jquery: $} = layui;
+    let {upload, layer, form, jquery: $} = layui;
     // 用户是否上传过图片
     let flag = false;
 
@@ -56,6 +56,18 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
             success: function(data) {
                 // 绘制canvas
                 draw(data);
+                // 给画布添加点击下载事件
+                // 只有在PC端才能使用，其他系统经测试无法使用
+                if (!(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) {
+                    $('#myCanvas').click(function() {
+                        let a = document.createElement("a");
+                        a.href = document.getElementById('myCanvas').toDataURL();
+                        a.download = new Date().getTime() + '.png';
+                        a.click();
+                    });
+                }
+
+
                 layer.msg('提交成功', {icon: 1, time: 1000});
             }
         });
@@ -138,12 +150,20 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                 cardPaint.drawImage(cardQuality, 276, 2, cardQuality.width, cardQuality.height);
 
                 // 绘制卡牌名
-                cardPaint.globalCompositeOperation = 'source-over';
-                cardPaint.globalAlpha = 1;
-                cardPaint.font = 'lighter 26px LiSu';
-                cardPaint.textAlign = 'center';
-                cardPaint.fillStyle = "#424242";
-                cardPaint.fillText(data.cardName, 165, 334, 200);
+                let entity = {
+                    AccessKey: '5f2c60307bbe4b06b36d4016e70e5d8a',
+                    Content: data.cardName,
+                };
+                $youzikuClient.getFontFace(entity, function (result) {
+                    cardPaint.globalCompositeOperation = 'source-over';
+                    cardPaint.globalAlpha = 1;
+                    cardPaint.font = 'normal 26px jdlibianjian';
+                    cardPaint.textAlign = 'center';
+                    cardPaint.fillStyle = "#4f4f4f";
+                    cardPaint.fillText(data.cardName, 165, 336, 200);
+                });
+
+
 
                 // 绘制卡牌描述
                 let maxSize = 0, fontsize = '', all = data.cardDesc.length
@@ -159,19 +179,33 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                 else // if (all <= 46)
                     maxSize = 12, fontsize = ' 22px ';
                 // 将卡牌描述按换行分割，最多分割6个
-                let temp = data.cardDesc.split('\r\n', 6);
+                let temp = data.cardDesc.split('\r\n', 5);
                 let describe = new Array();
                 // 将分隔好的字串装入describe数组中，长度动态限制
                 for (let item of temp) {
-                    if (item.length <= 10)
-                        describe.push(item);
-                    else {
-                        for (let i = 0; i < item.length; i += maxSize) {
-                            describe.push(item.substr(i, maxSize));
+                    let tempStr = '', count = 0;
+                    for (let i = 0; i < item.length; i++) {
+                        // 若是中文，count + 1，否则count + 0.75(中文更宽)
+                        if (item.charCodeAt(i) > 127 || item.charCodeAt(i) === 94)
+                            count += 1;
+                        else
+                            count += 0.75;
+                        // 临时字符串，用于拼接
+                        tempStr += item[i];
+                        // 每隔一个maxSize切分一次，并将拼接字符串清空
+                        if (count >= maxSize) {
+                            // console.log(count);
+                            describe.push(tempStr);
+                            tempStr = '';
+                            count = 0;
                         }
                     }
+                    if (tempStr.length > 0) {
+                        describe.push(tempStr);
+                        // console.log(count);
+                    }
                 }
-                console.log(describe);
+                // console.log(describe);
                 // 设置描述框渲染起始高度和行间隔
                 if (describe.length == 1)
                     startHeight = 450, inteval = 0;
