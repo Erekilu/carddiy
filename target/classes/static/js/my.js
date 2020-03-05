@@ -59,7 +59,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                 // 给画布添加点击下载事件
                 // 只有在PC端才能使用，其他系统经测试无法使用
                 if (!(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) {
-                    $('#myCanvas').click(function() {
+                    $('#myCanvas').unbind('click').click(function() {
                         let a = document.createElement("a");
                         a.href = document.getElementById('myCanvas').toDataURL();
                         a.download = new Date().getTime() + '.png';
@@ -162,8 +162,6 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                     cardPaint.fillStyle = "#4f4f4f";
                     cardPaint.fillText(data.cardName, 165, 336, 200);
                 });
-
-
 
                 // 绘制卡牌描述
                 let maxSize = 0, fontsize = '', all = data.cardDesc.length
@@ -292,6 +290,5 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
     // 页面初始化方法
     $(function() {
         // $('#reset').click();
-
     });
 });
