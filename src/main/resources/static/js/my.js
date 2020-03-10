@@ -104,6 +104,59 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
         // 获取画布
         let cardPaint = paint.getContext("2d");
 
+        let cardSaleWidth = 20, cardSaleHeight = 14,
+            cardColor2Width = 299, cardColor2Height = 66,
+            cardQualityWidth = 276, cardQualityHeight = 2,
+            cardLifeWidth = 283, cardLifeHeight = 517,
+            cardStrengthWidth = 22, cardStrengthHeight = 517;
+
+        // 微调参数
+        let color1 = $('#card_color1').val(),
+            color2 = $('#card_color2').val(),
+            type = $("input[name='cardType']:checked").val();
+        if (color1 === 'white' && color2 === 'red' && type === 'biology') {
+            cardSaleWidth -= 3;
+            cardSaleHeight -= 3;
+            cardColor2Width += 1;
+            cardColor2Height -= 2;
+            cardQualityWidth += 2;
+            cardQualityHeight -= 2;
+        } else if (color1 === 'white' && color2 === 'black' && type === 'biology') {
+            cardSaleWidth -= 3;
+            cardSaleHeight -= 3;
+            cardColor2Width += 2;
+            cardColor2Height -= 2;
+            cardQualityWidth += 2;
+            cardQualityHeight -= 2;
+            cardLifeWidth += 1;
+            cardLifeHeight += 2;
+            cardStrengthWidth -= 2;
+            cardStrengthHeight += 2;
+        } else if (color1 === 'blue' && color2 === 'green' && type === 'biology') {
+            cardSaleWidth -= 3;
+            cardSaleHeight -= 3;
+            cardColor2Width += 3;
+            cardColor2Height -= 2;
+            cardQualityWidth += 2;
+            cardQualityHeight -= 3;
+            cardLifeWidth += 3;
+            cardLifeHeight += 2;
+            cardStrengthWidth -= 1;
+            cardStrengthHeight += 2;
+        } else if (color1 === 'white' && color2 === 'black' && type === 'magic') {
+            cardColor2Width += 2;
+            cardColor2Height -= 2;
+            cardQualityWidth += 2;
+            cardQualityHeight -= 2;
+        } else if (color1 === 'blue' && color2 === 'red' && type === 'artifact') {
+            cardSaleWidth -= 1;
+            cardSaleHeight -= 1;
+            cardColor2Width += 1;
+            cardColor2Height -= 2;
+            cardQualityWidth += 1;
+            cardQualityHeight -= 2;
+        }
+
         new Promise(function(resolve) {
             // 绘制卡底
             let cardType = new Image();
@@ -131,7 +184,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
             cardSale.onload = function() {
                 cardPaint.globalCompositeOperation = 'source-over';
                 cardPaint.globalAlpha = 1;
-                cardPaint.drawImage(cardSale, 20, 14, cardSale.width, cardSale.height);
+                cardPaint.drawImage(cardSale, cardSaleWidth, cardSaleHeight, cardSale.width, cardSale.height);
             };
             // 绘制色块
             let cardColor2 = new Image();
@@ -139,7 +192,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
             cardColor2.onload = function() {
                 cardPaint.globalCompositeOperation = 'source-over';
                 cardPaint.globalAlpha = 1;
-                cardPaint.drawImage(cardColor2, 299, 66, cardColor2.width, cardColor2.height);
+                cardPaint.drawImage(cardColor2, cardColor2Width, cardColor2Height, cardColor2.width, cardColor2.height);
             };
             // 绘制稀有度
             let cardQuality = new Image();
@@ -147,7 +200,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
             cardQuality.onload = function() {
                 cardPaint.globalCompositeOperation = 'source-over';
                 cardPaint.globalAlpha = 1;
-                cardPaint.drawImage(cardQuality, 276, 2, cardQuality.width, cardQuality.height);
+                cardPaint.drawImage(cardQuality, cardQualityWidth, cardQualityHeight, cardQuality.width, cardQuality.height);
 
                 // 绘制卡牌名
                 let entity = {
@@ -159,7 +212,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                     cardPaint.globalAlpha = 1;
                     cardPaint.font = 'normal 26px jdlibianjian';
                     cardPaint.textAlign = 'center';
-                    cardPaint.fillStyle = "#4f4f4f";
+                    cardPaint.fillStyle = "#242424";
                     cardPaint.fillText(data.cardName, 165, 336, 200);
                 });
 
@@ -224,7 +277,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                 cardPaint.fillStyle = "#363636";
                 // 绘制图像
                 for (let i = 0; i < describe.length; i++) {
-                    cardPaint.fillText(describe[i], 165, startHeight + i * inteval, 260);
+                    cardPaint.fillText(describe[i], 165, startHeight + i * inteval, 380);
                 }
             };
 
@@ -246,7 +299,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                 cardStrength.onload = function() {
                     cardPaint.globalCompositeOperation = 'source-over';
                     cardPaint.globalAlpha = 1;
-                    cardPaint.drawImage(cardStrength, 22, 517, cardStrength.width * 0.6, cardStrength.height * 0.6);
+                    cardPaint.drawImage(cardStrength, cardStrengthWidth, cardStrengthHeight, cardStrength.width * 0.6, cardStrength.height * 0.6);
                 };
                 // 生命
                 let cardLife = new Image();
@@ -254,7 +307,7 @@ layui.use(['upload', 'layer', 'element', 'form'], function() {
                 cardLife.onload = function() {
                     cardPaint.globalCompositeOperation = 'source-over';
                     cardPaint.globalAlpha = 1;
-                    cardPaint.drawImage(cardLife, 283, 517, cardLife.width * 0.6, cardLife.height * 0.6);
+                    cardPaint.drawImage(cardLife, cardLifeWidth, cardLifeHeight, cardLife.width * 0.6, cardLife.height * 0.6);
                 }
             } else if (data.flag === 'artifact') {
                 if (data.artifactLife === true) {
