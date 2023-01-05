@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: top.lsyweb.carddiy.CarddiyApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.621 s - in top.lsyweb.carddiy.CarddiyApplicationTests
