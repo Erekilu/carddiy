@@ -17,22 +17,32 @@
 
 
 <ul class="layui-nav layui-bg-green" lay-filter="">
-    <li class="layui-nav-item"><a href="./index.html">秘境对决</a></li>
-    <li class="layui-nav-item"><a href="./hearthstone.html">炉石传说</a></li>
+    <li class="layui-nav-item"><a href="./index.html">DIY制作器</a></li>
+    <!--<li class="layui-nav-item"><a href="statistical.html">天梯数据统计</a></li>-->
     <li class="layui-nav-item layui-this"><a href="./about.html">基础说明</a></li>
 </ul>
 
 
 <div class="layui-container">
     <div class="layui-anim layui-anim-up">
-    <div class="layui-row">
-        <div class="layui-col-md7" style="margin-top: 10px;">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md8" style="margin-top: 10px;">
             <div class="layui-card">
                 <div class="layui-card-body">
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
                         <legend>更新记录</legend>
                     </fieldset>
                     <ul class="layui-timeline">
+                        <li class="layui-timeline-item">
+                            <i class="layui-icon layui-timeline-axis"></i>
+                            <div class="layui-timeline-content layui-text">
+                                <h3 class="layui-timeline-title">2023/1/4</h3>
+                                <ul>
+                                    <li>上传卡图支持自定义裁剪。</li>
+                                    <li>卡牌描述支持自定义加粗。</li>
+                                </ul>
+                            </div>
+                        </li>
                         <li class="layui-timeline-item">
                             <i class="layui-icon layui-timeline-axis"></i>
                             <div class="layui-timeline-content layui-text">
@@ -77,9 +87,7 @@
                         </li>
                     </ul>
                     <blockquote class="layui-elem-quote layui-quote-nm">
-                        代码开源，已经上传在github上了，喜欢的话，给基露点个Star(●'◡'●)。<br/>
-                        地址：https://github.com/Erekilu/carddiy <br/>
-                        虽然武汉还封着，但社区现在经常有爱心肉了，便宜又新鲜，可把我馋坏了！。
+                        https://github.com/Erekilu/carddiy
                     </blockquote>
 
                     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
@@ -89,6 +97,13 @@
                         通常是需要我们自己去注意的一些点。（会结合用户反馈持续补充）
                     </blockquote>
                     <div class="layui-collapse">
+                        <div class="layui-colla-item">
+                            <h2 class="layui-colla-title">怎么在描述文本里加粗关键字？</h2>
+                            <div class="layui-colla-content">
+                                在关键词左右加上字母b，例如"b空军，屏障b"，这样空军和屏障两个关键字就可以加粗了。<br/>
+                                当然，你也可以在描述的某个关键词中间加上字母b，例如"进场时使随机b护卫b生物获得+1/+1"，护卫这个关键字就能加粗了。<br/>
+                            </div>
+                        </div>
                         <div class="layui-colla-item">
                             <h2 class="layui-colla-title">生物的主动技能，神器消耗耐久等符号怎么输入到描述框？</h2>
                             <div class="layui-colla-content">
@@ -100,15 +115,14 @@
                         <div class="layui-colla-item">
                             <h2 class="layui-colla-title">制作出的图片能不能下载？</h2>
                             <div class="layui-colla-content">
-                                目前只在PC端设置了下载接口，在制作完图片后，点击图片即可下载到本地。<br/>
-                                移动端暂不支持，以后会慢慢优化的！
+                                目前只在PC端设置了下载接口，在制作完图片后，点击图片即可下载到本地。移动端暂不支持<br/>
                             </div>
                         </div>
                         <div class="layui-colla-item">
                             <h2 class="layui-colla-title">为什么卡牌三围只有1-12点供选择？</h2>
                             <div class="layui-colla-content">
                                 因为这里选择的属性值，都是对应着数字图片。而这些数字图片来源于秘境的卡图(要从里面扣出来)。<br/>
-                                emmmm所以说，秘境的卡图有什么数值，这里才能用什么数值。
+                                所以说，秘境的卡图有什么数值，这里才能用什么数值。
                             </div>
                         </div>
                         <div class="layui-colla-item">
@@ -117,32 +131,13 @@
                                 和上一条一样，如果秘境没出对应的双色卡，那当然没处扣对应的卡底咯。<br/>
                                 还有一种可能就是，你的颜色填反了，比如说双色卡[黑绿]，你选的主色绿，副色黑，那也无法显示双色卡底的。
                                 因为这里的颜色排列都是按照秘境颜色排列规则(白，蓝，黑，红，绿)。<br/>
-                                不过，当双色不匹配时，卡底会默认采用主色的单色卡底，这个基露已经考虑到了。
-                            </div>
-                        </div>
-                        <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">为什么我上传的卡图中的关键元素在成品中被遮住了？</h2>
-                            <div class="layui-colla-content">
-                                亲亲，建议你上传时优先选择接近正方形的卡图，或者是主要元素在中间的卡图哦。<br/>
-                                因为我会在图片中心裁剪出一个正方形来填充卡图，如果你上传图片中的关键元素在侧边，
-                                那当然会被裁剪掉了。
                             </div>
                         </div>
                         <div class="layui-colla-item">
                             <h2 class="layui-colla-title">上传和处理速度怎么这么慢呀！</h2>
                             <div class="layui-colla-content">
-                                咱也不敢说...基露是个学生，用的阿里云学生机当的服务器，价格便宜，所以嘛，配置比较低。<br/>
-                                处理速度慢真的是委屈大家了，这里基露给大家道个歉(认真脸.jpg)。<br/>
-                                有钱后一定换台高性能的服务器！
-                            </div>
-                        </div>
-                        <div class="layui-colla-item">
-                            <h2 class="layui-colla-title">战吼、空军之类的关键词为什么不能加粗？</h2>
-                            <div class="layui-colla-content">
-                                因为用的原生canvas做的渲染，每次只能在画布输出一行，
-                                所以能把这卡牌描述自然的印在描述框就花费了很大力气 呼。<br/>
-                                很多细节都是各种基于行像素的微调(视力-1)，如果再加上匹配关键字来加粗，就等于又把一行一行
-                                的字拆散了，细粒到字符，这个...基露做不到...丝米马赛。
+                                服务端用的阿里云学生机当的服务器，价格便宜，所以嘛，配置比较低。<br/>
+                                有实力的富哥可以赞助我换新机器呀
                             </div>
                         </div>
                     </div>
@@ -152,12 +147,10 @@
                     </fieldset>
                     <blockquote class="layui-elem-quote layui-quote-nm">
                         <p style="line-height: 35px;">
-                            秘境对决，这么好玩的游戏，咋能一个diy工具都没有呢？康康隔壁家炉石，一堆制作工具！今儿必须整出来！<br/>
-                            害，说正题。因为基于PS模板的diy，入门难度比较高。不一定所有人都有电脑，有电脑不一定有PS，有PS不一定
-                            会操作，可能一开始就被一个psd吓坏了，这就劝退了一大波玩家。<br/>
-                            而这个网页版的制作器不需要下载软件，它的响应式布局可以同时兼容PC端，移动端，
-                            各项操作也都是傻瓜式，大大降低了入手难度，所以只要有手机，或电脑，就可以进入网址制作图片。<br/>
-                            小伙伴萌开动脑筋，加入秘境拯救计划！<br/>
+                            作者很喜欢玩卡牌类游戏，也很喜欢DIY各种卡牌。所以闲暇时间就想尽量做一个功能完善，使用方便的卡牌DIY工具。
+                            方便自己使用，也给社群其他玩家提供一个便利的DIY手段。<br/>
+                            这个工具从20年做的初版做成，到现在优化了核心功能，最终算是实现了这个产品。<br/>
+                            秘境的重新开服我是非常高兴的，也有很多小伙伴热爱着这个游戏，希望以后秘境对决做得越来越好！<br/>
                         </p>
                     </blockquote>
 
@@ -194,18 +187,12 @@
                                 </p>
                             </div>
                         </li>
-                        <li class="layui-timeline-item">
-                            <i class="layui-icon layui-timeline-axis"></i>
-                            <div class="layui-timeline-content layui-text">
-                                <h3 class="layui-timeline-title">游戏里...游戏里免了吧 <i class="layui-icon"></i></h3>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <div class="layui-col-md4 layui-col-md-offset1" style="margin-top: 10px;">
+        <div class="layui-col-md4" style="margin-top: 10px;">
             <div class="layui-card">
                 <div class="layui-card-body">
                     <!--头像简介容器-->
@@ -218,11 +205,10 @@
                         <div class="layui-col-xs6 layui-col-xs-offset3"
                              style="text-align: center; margin-top: 10px; margin-bottom: 10px;">
                             <!--名称-->
-                            <h2>关于作者</h2>
+                            <h2>Erekilu</h2>
                         </div>
                         <div class=" layui-col-xs12">
-                            <p>学生一枚~，软件工程专业。游戏ID是“厄兰基露 4110409”，擅长深蓝，讨厌快攻，欢迎大家加好友。平时喜欢唱歌、健身，当然，
-                                对编程也是很感兴趣的。也不说多了，大佬们天梯遇到我记得py呀，爱你们。</p>
+                            <p>疯狂星期四，v50看看实力</p>
                         </div>
                     </div>
                 </div>
@@ -254,6 +240,23 @@
                     </div>
                 </div>
             </div>
+
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-lg12 layui-col-md12  layui-col-xs12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div id="chart2" style="height:400px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-col-lg12 layui-col-md12  layui-col-xs12">
+                    <div class="layui-card">
+                        <div class="layui-card-body">
+                            <div id="chart1" style="height:400px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     </div>
@@ -261,6 +264,8 @@
 
 
 <script src="./layui.js"></script>
+<script type="text/javascript" src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+<script src="./js/statistical.js"></script>
 <script>
     layui.use(['layer', 'element'], function() {
         let {element, layer, jquery: $} = layui;

@@ -7,16 +7,24 @@
 		<link rel="icon" href="./images/iconfont-%20operation.png">
 		<link rel="stylesheet" href="./css/layui.css">
 		<style>
+			@font-face {
+				font-family: "xiaolishu";
+				src: url("/font/xls.ttf") format("truetype");
+			}
+
 			*{
 				font-family: "Microsoft YaHei","幼圆","宋体",sans-serif;
 			}
+
+
 		</style>
-		<script type="text/javascript" src="http://cdn.repository.webfont.com/wwwroot/js/wf/youziku.client.min.js"></script>
+		<!--<script type="text/javascript" src="http://cdn.repository.webfont.com/wwwroot/js/wf/youziku.client.min.js"></script>-->
 	</head>
 	<body>
+		<b style="font-family: xiaolishu"></b>
 		<ul class="layui-nav layui-bg-green" lay-filter="" style="margin-bottom: 10px;">
-			<li class="layui-nav-item layui-this"><a href="./index.html">秘境对决</a></li>
-			<li class="layui-nav-item"><a href="./hearthstone.html">炉石传说</a></li>
+			<li class="layui-nav-item layui-this"><a href="./index.html">DIY制作器</a></li>
+			<!--<li class="layui-nav-item"><a href="./statistical.html">天梯数据统计</a></li>-->
 			<li class="layui-nav-item"><a href="./about.html">基础说明</a></li>
 		</ul>
 
@@ -49,7 +57,7 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">卡牌稀有度</label>
 						<div class="layui-input-block">
-							<select name="cardQuility" lay-verify="required">
+							<select name="cardQuility" id="card_quility" lay-verify="required">
 								<option value=""></option>
 								<option value="1">普通</option>
 								<option value="2">优秀</option>
@@ -208,6 +216,8 @@
 		</div>
 		<script src="./layui.js"></script>
 		<!-- 引入自己的js文件 -->
+		<link href="cropper/cropper.css" rel="stylesheet" />
+		<script src="cropper/croppers.js"></script>
 		<script src="./js/my.js"></script>
 	</body>
 </html>

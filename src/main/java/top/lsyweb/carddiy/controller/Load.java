@@ -60,9 +60,9 @@ public class Load
 			BufferedImage sourceImage = ImageIO.read(file.getInputStream());
 			int width = Math.min(sourceImage.getWidth(), sourceImage.getHeight());
 			Thumbnails.of(sourceImage)
-					.sourceRegion(Positions.CENTER, width, width)
-					.size(325, 325)
-					.toFile(new File(getImgBasePath() + fullName));
+					  .scale(1.0d)
+					  .outputQuality(1.0d)
+					  .toFile(new File(getImgBasePath() + fullName));
 			map.put("success", true);
 			map.put("cardUuid", fullName);
 		}
